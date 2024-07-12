@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/header";
+import { AuthProvider } from "@/providers/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "App Controle - Sgaria",
-  description: "Controle de clientes",
+  title: "Sgaria Control - Sistema de gerenciamento",
+  description: "Gerencie seu sistema de forma fácil",
 };
 
 export default function RootLayout({
@@ -17,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        {children}
+        <AuthProvider>
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
